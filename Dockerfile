@@ -22,7 +22,7 @@ RUN apt update \
 
 RUN export DEB_FILENAME=snapserver_${SNAPCAST_VERSION}-1_$(dpkg --print-architecture).deb \
     && wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/${DEB_FILENAME} \
-    && apt install -y ${DEB_FILENAME} \
+    && apt install -y ./${DEB_FILENAME} \
     && rm ${DEB_FILENAME}
 
 COPY --from=0 /build/librespot/target/release/librespot /usr/local/bin/librespot
