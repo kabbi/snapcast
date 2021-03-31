@@ -5,12 +5,9 @@ RUN apt update \
 
 WORKDIR /build
 
-# There is a bug on quemu for cargo fetch, tmpfs is a crude workaround
 RUN git clone https://github.com/librespot-org/librespot.git \
     && cd librespot \
     && git checkout 6a4bc83259dd723dfecce073c363be84f31565d9 \
-    && mkdir ~/.cargo \
-    && mount -t tmpfs -o size=2048m tmpfs ~/.cargo \
     && cargo build --release --no-default-features
 
 

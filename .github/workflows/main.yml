@@ -10,6 +10,11 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
+      - name: create small fs for docker cache
+        run: |
+          sudo systemctl stop docker
+          sudo mount -t tmpfs -o size=4G tmpfs /var/lib/docker
+          sudo systemctl start docker
       - name: install buildx
         id: buildx
         uses: crazy-max/ghaction-docker-buildx@v1
