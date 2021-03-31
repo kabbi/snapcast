@@ -15,13 +15,14 @@ FROM debian:buster-slim
 
 ENV SNAPCAST_VERSION=0.24.0
 ARG TARGETARCH
+ARG TARGETVARIANT
 
 RUN apt update \
     && apt install -y wget
 
-RUN wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}-1_${TARGETARCH}.deb
+RUN wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/snapserver_${SNAPCAST_VERSION}-1_${TARGETARCH}${TARGETVARIANT}.deb
 
-RUN apt install -y ./snapserver_${SNAPCAST_VERSION}-1_${TARGETARCH}.deb \
-    && rm snapserver_${SNAPCAST_VERSION}-1_${TARGETARCH}.deb
+RUN apt install -y ./snapserver_${SNAPCAST_VERSION}-1_${TARGETARCH}${TARGETVARIANT}.deb \
+    && rm snapserver_${SNAPCAST_VERSION}-1_${TARGETARCH}${TARGETVARIANT}.deb
 
 COPY --from=0 /build/librespot/target/release/librespot /usr/local/bin/librespot
