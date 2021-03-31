@@ -18,7 +18,7 @@ ARG TARGETARCH
 ARG TARGETVARIANT
 
 RUN apt update \
-    && apt install -y wget
+    && apt install -y wget shairport-sync
 
 RUN export DEB_FILENAME=snapserver_${SNAPCAST_VERSION}-1_$(dpkg --print-architecture).deb \
     && wget https://github.com/badaix/snapcast/releases/download/v${SNAPCAST_VERSION}/${DEB_FILENAME} \
