@@ -14,6 +14,7 @@ RUN git clone https://github.com/librespot-org/librespot.git \
 FROM debian:buster-slim
 
 ENV SNAPCAST_VERSION=0.24.0
+ARG TARGETARCH
 
 RUN apt update \
     && apt install -y wget
